@@ -17,7 +17,7 @@ public class TestRestController {
 	public RespuestaDTO<String> test() {
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.DAY_OF_YEAR, 15);
-		return RespuestaDTO.ok(UtilCalendar.formatearCalendar(c), "respuesta correcta");
+		return RespuestaDTO.ok(UtilCalendar.formatearCalendar(c), "respuesta correcta", true);
 	}
 
 }
