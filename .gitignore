@@ -1,107 +1,147 @@
+######################
+# Project Specific
+######################
+/target/classes/static/**
+/src/test/javascript/coverage/
 
-# Created by https://www.toptal.com/developers/gitignore/api/java,eclipse,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=java,eclipse,visualstudiocode
+######################
+# Node
+######################
+/node/
+node_tmp/
+node_modules/
+npm-debug.log.*
+/.awcache/*
+/.cache-loader/*
 
-### Eclipse ###
+######################
+# SASS
+######################
+.sass-cache/
+
+######################
+# Eclipse
+######################
+*.pydevproject
+.project
 .metadata
-bin/
 tmp/
+tmp/**/*
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
+.classpath
 .settings/
 .loadpath
-.recommenders
+.factorypath
+/src/main/resources/rebel.xml
 
 # External tool builders
-.externalToolBuilders/
+.externalToolBuilders/**
 
 # Locally stored "Eclipse launch configurations"
 *.launch
 
-# PyDev specific (Python IDE for Eclipse)
-*.pydevproject
-
-# CDT-specific (C/C++ Development Tooling)
+# CDT-specific
 .cproject
 
-# CDT- autotools
-.autotools
-
-# Java annotation processor (APT)
-.factorypath
-
-# PDT-specific (PHP Development Tools)
+# PDT-specific
 .buildpath
 
-# sbteclipse plugin
-.target
+# STS-specific
+/.sts4-cache/*
 
-# Tern plugin
-.tern-project
+######################
+# IntelliJ
+######################
+.idea/
+*.iml
+*.iws
+*.ipr
+*.ids
+*.orig
+classes/
+out/
 
-# TeXlipse plugin
-.texlipse
+######################
+# Visual Studio Code
+######################
+.vscode/
 
-# STS (Spring Tool Suite)
-.springBeans
+######################
+# Maven
+######################
+/log/
+/target/
 
-# Code Recommenders
-.recommenders/
+######################
+# Gradle
+######################
+.gradle/
+/build/
 
-# Annotation Processing
-.apt_generated/
-.apt_generated_test/
-
-# Scala IDE specific (Scala & Java development for Eclipse)
-.cache-main
-.scala_dependencies
-.worksheet
-
-# Uncomment this line if you wish to ignore the project description file.
-# Typically, this file would be tracked if it contains build/dependency configurations:
-#.project
-
-### Eclipse Patch ###
-# Spring Boot Tooling
-.sts4-cache/
-
-### Java ###
-# Compiled class file
-*.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+######################
+# Package Files
+######################
 *.jar
 *.war
-*.nar
 *.ear
-*.zip
-*.tar.gz
-*.rar
+*.db
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+######################
+# Windows
+######################
+# Windows image file caches
+Thumbs.db
 
-### VisualStudioCode ###
-.vscode/*
-!.vscode/tasks.json
-!.vscode/launch.json
-*.code-workspace
+# Folder config file
+Desktop.ini
 
-### VisualStudioCode Patch ###
-# Ignore all local history of files
-.history
-.ionide
+######################
+# Mac OSX
+######################
+.DS_Store
+.svn
 
-# End of https://www.toptal.com/developers/gitignore/api/java,eclipse,visualstudiocode
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+######################
+# Directories
+######################
+/bin/
+/deploy/
+
+######################
+# Logs
+######################
+*.log*
+
+######################
+# Others
+######################
+*.class
+*.*~
+*~
+.merge_file*
+
+######################
+# Gradle Wrapper
+######################
+!gradle/wrapper/gradle-wrapper.jar
+
+######################
+# Maven Wrapper
+######################
+!.mvn/wrapper/maven-wrapper.jar
+
+######################
+# ESLint
+######################
+.eslintcache
