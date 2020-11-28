@@ -1,4 +1,4 @@
-package com.ceiba.laboratorio.util;
+package com.ceiba.laboratorio.commonCalendar;
 
 import java.text.DateFormat;
 import java.util.Calendar;
