@@ -1,4 +1,4 @@
-package com.ceiba.laboratorio;
+package com.ceiba.laboratorio.laboratoriobackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

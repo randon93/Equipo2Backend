@@ -1,4 +1,4 @@
-package com.ceiba.laboratorio;
+package com.ceiba.laboratorio.laboratoriobackend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
