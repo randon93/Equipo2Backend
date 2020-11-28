@@ -13,22 +13,15 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
-eureka:
-  client:
-    enabled: false
-  instance:
-    appname: bibliotecaceiba
-    instanceId: bibliotecaceiba:${spring.application.instance-id:${random.value}}
-
 spring:
   profiles:
     # Uncomment the following line to enable tests against production database type rather than H2, using Testcontainers
     #active: testcontainers
   application:
-    name: bibliotecaceiba
+    name: Equipo2Backend
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:mem:bibliotecaceiba;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:mem:Equipo2Backend;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     name:
     username:
     password:
@@ -64,13 +57,13 @@ spring:
     basename: i18n/messages
   task:
     execution:
-      thread-name-prefix: bibliotecaceiba-task-
+      thread-name-prefix: equipo-2-backend-task-
       pool:
         core-size: 1
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: bibliotecaceiba-scheduling-
+      thread-name-prefix: equipo-2-backend-scheduling-
       pool:
         size: 1
   thymeleaf:
@@ -88,7 +81,7 @@ server:
 
 jhipster:
   clientApp:
-    name: 'bibliotecaceibaApp'
+    name: 'equipo2BackendApp'
   logging:
     # To test json console appender
     use-json-format: false
@@ -101,7 +94,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-        base64-secret: ODhkZDFkZTVmNTAyMmM0ZWY4MDE4NzRjZWJmYTZjYjBiYTA4NWE2YzVhNTlkY2M5NWM1NTFhNjU3NDE3MjE3Mzk4Mjk4M2QzMzUyN2VmMzY4MGE1ZWMyNmZiZWFlNGIwNThhMGFkMzRlNjlkNTgxNWYwODQzMzE2NWMwMmFlZjE=
+        base64-secret: NTI3YTYyYjA1OTZjYmE4NmEyNDhjOWRjZjJlNmY0MTE0NzFhOTk0NDg3NWUxYWE0ODQ0NTdjNmU2NjcxOGQyZjAxYjc4N2QzNGI2ZjRiNTNmNWNlYjA2ZDg5ZTVmYWQzZTVkMTM0YzgwYWE1ZmVhYzE0NzYzNmVkMGYxMjAyNjM=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
   metrics:

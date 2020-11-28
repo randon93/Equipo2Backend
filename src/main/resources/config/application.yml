@@ -14,32 +14,6 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
-eureka:
-  client:
-    enabled: true
-    healthcheck:
-      enabled: true
-    fetch-registry: true
-    register-with-eureka: true
-    instance-info-replication-interval-seconds: 10
-    registry-fetch-interval-seconds: 10
-  instance:
-    appname: bibliotecaceiba
-    instanceId: bibliotecaceiba:${spring.application.instance-id:${random.value}}
-    lease-renewal-interval-in-seconds: 5
-    lease-expiration-duration-in-seconds: 10
-    status-page-url-path: ${management.endpoints.web.base-path}/info
-    health-check-url-path: ${management.endpoints.web.base-path}/health
-    metadata-map:
-      zone: primary # This is needed for the load balancer
-      profile: ${spring.profiles.active}
-      version: #project.version#
-      git-version: ${git.commit.id.describe:}
-      git-commit: ${git.commit.id.abbrev:}
-      git-branch: ${git.branch:}
-ribbon:
-  eureka:
-    enabled: true
 feign:
   hystrix:
     enabled: true
@@ -106,7 +80,12 @@ management:
 
 spring:
   application:
-    name: bibliotecaceiba
+    name: Equipo2Backend
+  profiles:
+    # The commented value for `active` can be replaced with valid Spring profiles to load.
+    # Otherwise, it will be filled in by gradle when building the JAR file
+    # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
+    active: #spring.profiles.active#
   jmx:
     enabled: false
   data:
@@ -139,13 +118,13 @@ spring:
     allow-bean-definition-overriding: true
   task:
     execution:
-      thread-name-prefix: bibliotecaceiba-task-
+      thread-name-prefix: equipo-2-backend-task-
       pool:
         core-size: 2
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: bibliotecaceiba-scheduling-
+      thread-name-prefix: equipo-2-backend-scheduling-
       pool:
         size: 2
   thymeleaf:
@@ -173,7 +152,7 @@ info:
 
 jhipster:
   clientApp:
-    name: 'bibliotecaceibaApp'
+    name: 'equipo2BackendApp'
   # By default CORS is disabled. Uncomment to enable.
   # cors:
   #     allowed-origins: "*"
@@ -183,11 +162,11 @@ jhipster:
   #     allow-credentials: true
   #     max-age: 1800
   mail:
-    from: bibliotecaceiba@localhost
+    from: Equipo2Backend@localhost
   swagger:
     default-include-pattern: /api/.*
-    title: bibliotecaceiba API
-    description: bibliotecaceiba API documentation
+    title: Equipo2Backend API
+    description: Equipo2Backend API documentation
     version: 0.0.1
     terms-of-service-url:
     contact-name:
