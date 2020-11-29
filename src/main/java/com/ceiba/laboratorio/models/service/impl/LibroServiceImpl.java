@@ -20,9 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Objects;
 
 @Service
@@ -68,50 +66,50 @@ public class LibroServiceImpl implements LibroService {
         if (Objects.isNull(e)) {
             return RespuestaDomain.error("No se encontro el Libro " + isbn);
         }
-        return RespuestaDomain.ok(libroDao.findByIsbn(isbn),"Libro Encontrado" );
+        return RespuestaDomain.ok(libroDao.findByIsbn(isbn), "Libro Encontrado");
     }
 
     @Override
     public RespuestaDomain prestamoLibro(PrestamoSolicitudDomain prestamoSolicitudDomain) {
         PrestamoEntity prestamoEntity = new PrestamoEntity();
         boolean b = UtilPalindromic.esPalindromo(prestamoSolicitudDomain.getIsbn());
-        if (b){
+        if (b) {
             return RespuestaDomain.error("Los libros palíndromos solo se\n" +
                     "pueden utilizar en la biblioteca");
         }
         b = UtilsFechaEntrega.prestamo(prestamoSolicitudDomain.getIsbn());
-        if (b) { //es mayor de 30 se entrega a los 15 dias max.
-            RespuestaDomain responseMayorTreinta = isbnMayorTreinta(prestamoSolicitudDomain);
-            if (!responseMayorTreinta.isStatus()) {
-                return RespuestaDomain.error(responseMayorTreinta.getMensaje());
-            }
-
-        }
-        return null;
+        if (b) { //isbn es mayor de 30 se entrega a los 15 dias max.
+            prestamoEntity.setFechaPrestamo(UtilCalendar.getLocalDate());
+            LocalDate quienceDiasMax = UtilCalendar.getLocalDate(Calendar.getInstance());
+            prestamoEntity.setFechaEntrega(quienceDiasMax);
+            return regitrarPrestamo(prestamoSolicitudDomain, prestamoEntity);
+        } // isbn es menor de 30 no tiene fecha de entrega.
+        prestamoEntity.setFechaPrestamo(UtilCalendar.getLocalDate());
+        prestamoEntity.setFechaEntrega(null);
+        return regitrarPrestamo(prestamoSolicitudDomain, prestamoEntity);
     }
 
-    private RespuestaDomain<Object> isbnMayorTreinta(PrestamoSolicitudDomain prestamoSolicitudDomain) {
-        PrestamoEntity prestamoEntity = new PrestamoEntity();
+    private RespuestaDomain<Object> regitrarPrestamo(PrestamoSolicitudDomain prestamoSolicitudDomain, PrestamoEntity prestamoEntity) {
         prestamoEntity.setFechaPrestamo(UtilCalendar.getLocalDate());
         LocalDate quienceDiasMax = UtilCalendar.getLocalDate(Calendar.getInstance());
         prestamoEntity.setFechaEntrega(quienceDiasMax);
         RespuestaDomain responseUsuario = usuarioService.findByCorreo(prestamoSolicitudDomain.getCorreo());
         if (!responseUsuario.isStatus()) {
             UsuarioEntity userEntity = crearUsuario(prestamoSolicitudDomain);
-            if (Objects.isNull(userEntity)){
+            if (Objects.isNull(userEntity)) {
                 return RespuestaDomain.error("NO SE PUDO CREAR EL USUARIO");
             }
             prestamoEntity.setUsuarioEntityCliente(userEntity);
             //Se busca el libro
-            RespuestaDomain liroResponseEn =  findByIsbn(prestamoSolicitudDomain.getIsbn());
-            if (!liroResponseEn.isStatus() ) {
+            RespuestaDomain liroResponseEn = findByIsbn(prestamoSolicitudDomain.getIsbn());
+            if (!liroResponseEn.isStatus()) {
                 return RespuestaDomain.error("El libro no se encuentra registrado");
             }
             LibroEntity le = (LibroEntity) liroResponseEn.getData();
             if (le.getCantidadDisponible() <= 1) {
                 return RespuestaDomain.error("El libro no tiene Stock para el prestamo");
             }
-            le.setCantidadDisponible(le.getCantidadDisponible() - 1 );
+            le.setCantidadDisponible(le.getCantidadDisponible() - 1);
             libroDao.save(le);
             prestamoEntity.setObservaciones(OSERVACION_DEFAULT);
             prestamoEntity.setLibroEntity(le);
@@ -119,8 +117,6 @@ public class LibroServiceImpl implements LibroService {
         }
         return RespuestaDomain.ok(prestamoEntity, "Exito");
     }
-
-//    private RespuestaDomain
 
     private UsuarioEntity crearUsuario(PrestamoSolicitudDomain prestamo) {
         UsuarioDomain user = new UsuarioDomain();
