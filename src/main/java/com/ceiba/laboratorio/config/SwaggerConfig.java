@@ -39,7 +39,7 @@ public class SwaggerConfig {
                 "Some custom description of API.",
                 "API Equipo2Backend",
                 "Terms of service",
-                new Contact("Miguel Angel Ordoñez", "", "miguelangelog@ufps.edu.co"),
+                new Contact("Miguel Angel OrdoÃ±ez", "", "miguelangelog@ufps.edu.co"),
                 "License of API",
                 "API license URL",
                 Collections.emptyList());
