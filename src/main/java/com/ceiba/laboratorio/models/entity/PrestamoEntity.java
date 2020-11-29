@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,18 +42,15 @@ public class PrestamoEntity implements Serializable {
     @Column(name = "observaciones")
     private String observaciones;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario_cliente")
-    @JsonIgnoreProperties(value = "usuarioClientes", allowSetters = true)
     private UsuarioEntity usuarioEntityCliente;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario_bibliotecario")
-    @JsonIgnoreProperties(value = "usuarioBibliotecas", allowSetters = true)
     private UsuarioEntity usuarioEntityBiblioteca;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_libro")
-    @JsonIgnoreProperties(value = "prestamos", allowSetters = true)
     private LibroEntity libroEntity;
 }

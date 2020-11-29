@@ -9,8 +9,10 @@ import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,15 +46,22 @@ public class UsuarioEntity implements Serializable {
 	@Column(name = "rol", length = 1)
 	private String rol;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_persona")
-	@JsonIgnoreProperties(value = "usuarios", allowSetters = true)
 	private PersonasEntity personasEntity;
 
-	@OneToMany(mappedBy = "usuarioCliente")
+	@OneToMany(
+			mappedBy = "usuario",
+			fetch = FetchType.LAZY,
+			cascade = CascadeType.ALL
+	)
 	private Set<PrestamoEntity> usuarioClientes = new HashSet<>();
 
-	@OneToMany(mappedBy = "usuarioBiblioteca")
+	@OneToMany(
+			mappedBy = "usuario",
+			fetch = FetchType.LAZY,
+			cascade = CascadeType.ALL
+	)
 	private Set<PrestamoEntity> usuarioBibliotecas = new HashSet<>();
 
 }

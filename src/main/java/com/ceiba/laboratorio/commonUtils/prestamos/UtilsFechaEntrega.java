@@ -8,11 +8,11 @@ public class UtilsFechaEntrega {
     /**
      *  si tiene mas de 30 retorna verdadero
      */
-    private boolean sumaNumerosPalabra(String palabra){
+    private boolean sumaNumerosPalabra(String isbn){
         int i= 0;
         int suma=0;
-        while(i<palabra.length()) {
-        	suma=+Character.getNumericValue(palabra.charAt(i));
+        while(i<isbn.length()) {
+        	suma=+Character.getNumericValue(isbn.charAt(i));
         	i++;
         }
         return suma>30?true:false;
