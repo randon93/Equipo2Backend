@@ -4,7 +4,7 @@ import com.ceiba.laboratorio.models.service.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/libro")
+@RestController("/api/libro")
 public class LibroController {
 
     @Autowired
