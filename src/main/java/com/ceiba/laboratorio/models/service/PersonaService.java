@@ -8,7 +8,7 @@ public interface PersonaService {
 
     RespuestaDomain guardarPersona(PersonasDomain personaDomain);
 
-    RespuestaDomain findByCorreo(String correo);
+    RespuestaDomain findByIdentidad(String id);
 
     RespuestaDomain findAll();
 

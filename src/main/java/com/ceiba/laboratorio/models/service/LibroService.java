@@ -12,4 +12,8 @@ public interface LibroService {
     RespuestaDomain findByIsbn(String isbn);
 
     RespuestaDomain prestamoLibro(PrestamoSolicitudDomain prestamoSolicitudDomain);
+
+    RespuestaDomain findAll();
+
+    RespuestaDomain findAllPrestamo();
 }

@@ -39,4 +39,10 @@ public class UsuarioController {
 		return usuarioService.findAll();
 	}
 
+	@GetMapping("/buscar-identificacion/{cc}")
+	@ResponseBody
+	public RespuestaDomain buscarIdentificacion(@PathVariable String cc) {
+		return usuarioService.findByIdentidad(cc);
+	}
+
 }
