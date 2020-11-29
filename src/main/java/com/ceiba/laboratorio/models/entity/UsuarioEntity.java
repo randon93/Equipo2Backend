@@ -40,11 +40,11 @@ public class UsuarioEntity implements Serializable {
 
     @OneToMany(mappedBy = "usuarioCliente")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<PrestamoEtity> usuarioClientes = new HashSet<>();
+    private Set<PrestamoEntity> usuarioClientes = new HashSet<>();
 
     @OneToMany(mappedBy = "usuarioBiblioteca")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<PrestamoEtity> usuarioBibliotecas = new HashSet<>();
+    private Set<PrestamoEntity> usuarioBibliotecas = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = "usuarios", allowSetters = true)

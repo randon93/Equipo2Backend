@@ -20,7 +20,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "prestamo")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class PrestamoEtity implements Serializable {
+public class PrestamoEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

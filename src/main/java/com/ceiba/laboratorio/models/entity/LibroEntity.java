@@ -40,6 +40,5 @@ public class LibroEntity implements Serializable {
     private Integer cantidadDisponible;
 
     @OneToMany(mappedBy = "libro")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<PrestamoEtity> prestamoEtities = new HashSet<>();
+    private Set<PrestamoEntity> prestamoEtities = new HashSet<>();
 }
