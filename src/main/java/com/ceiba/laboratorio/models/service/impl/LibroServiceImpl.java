@@ -2,6 +2,7 @@ package com.ceiba.laboratorio.models.service.impl;
 
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,22 @@ public class LibroServiceImpl implements LibroService {
 		return RespuestaDomain.ok(libroDao.findByIsbn(isbn), "Libro Encontrado");
 	}
 
+	@Override
+	public RespuestaDomain findAll() {
+		List<LibroEntity> list = libroDao.findAll();
+		if (list.isEmpty()) {
+			return RespuestaDomain.error("No se encontraron libros regustrados");
+		}
+		return RespuestaDomain.ok(list, "Exito");
+	}
+
+	public RespuestaDomain findAllPrestamo() {
+		List<PrestamoEntity> list = prestaDao.findAll();
+		if (list.isEmpty()) {
+			return RespuestaDomain.error("No se encontraron libros regustrados");
+		}
+		return RespuestaDomain.ok(list, "Exito");
+	}
 	@Override
 	public RespuestaDomain prestamoLibro(PrestamoSolicitudDomain prestamoSolicitudDomain) {
 		PrestamoEntity prestamoEntity = new PrestamoEntity();

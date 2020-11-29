@@ -4,8 +4,8 @@ spring:
     hibernate:
       ddl-auto: none
   datasource:    
-    url: jdbc:mysql://localhost:3306/biblioteca_ceiba?useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://tolbargy.com:3306/biblioteca_ceiba?useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username : root
-    password: 332817Convenios
+    password: biblioteca12345
 server:
   port: 8291

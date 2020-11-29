@@ -9,6 +9,8 @@ public interface UsuarioService {
 
     RespuestaDomain findByCorreo(String correo);
 
+    RespuestaDomain findByIdentidad(String identidad);
+
     RespuestaDomain findAll();
 
     RespuestaDomain guarda(UsuarioDomain usuarioDomain);
