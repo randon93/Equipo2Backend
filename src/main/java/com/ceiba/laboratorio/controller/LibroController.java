@@ -32,6 +32,6 @@ public class LibroController {
     @GetMapping("/buscar-isbn")
     @ResponseBody
     public RespuestaDomain buscarIsbn(@RequestBody String isbn) {
-        libroService.findByIsbn(isbn);
+        return libroService.findByIsbn(isbn);
     }
 }

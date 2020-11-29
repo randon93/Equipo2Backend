@@ -16,6 +16,7 @@ import com.ceiba.laboratorio.models.entity.PrestamoEntity;
 import com.ceiba.laboratorio.models.entity.UsuarioEntity;
 import com.ceiba.laboratorio.models.service.LibroService;
 import com.ceiba.laboratorio.models.service.UsuarioService;
+import jdk.vm.ci.meta.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,7 +52,6 @@ public class LibroServiceImpl implements LibroService {
             libroEntity.setCantidadTotal(total + 1);
             libroEntity.setCantidadDisponible(disponibles + 1);
         } else {
-
             libroEntity = libroMapper.convertToEntity(libroDomain);
             libroEntity.setCantidadTotal(1);
             libroEntity.setCantidadDisponible(1);
@@ -79,9 +79,17 @@ public class LibroServiceImpl implements LibroService {
         }
         b = UtilsFechaEntrega.prestamo(prestamoSolicitudDomain.getIsbn());
         if (b) { //isbn es mayor de 30 se entrega a los 15 dias max.
-            prestamoEntity.setFechaPrestamo(UtilCalendar.getLocalDate());
-            LocalDate quienceDiasMax = UtilCalendar.getLocalDate(Calendar.getInstance());
-            prestamoEntity.setFechaEntrega(quienceDiasMax);
+            Calendar c = Calendar.getInstance(); //fecha actual.
+            prestamoEntity.setFechaPrestamo(UtilCalendar.getLocalDate(c));
+            c.add(Calendar.DAY_OF_YEAR, 15);
+            if(UtilCalendar.isDomingo(c)) {
+                c.add(Calendar.DAY_OF_YEAR, 1);
+                LocalDate entregaMax = UtilCalendar.getLocalDate(c);
+                prestamoEntity.setFechaEntrega(entregaMax);
+            }else{
+                LocalDate entregaMax = UtilCalendar.getLocalDate(c);
+                prestamoEntity.setFechaEntrega(entregaMax);
+            }
             return regitrarPrestamo(prestamoSolicitudDomain, prestamoEntity);
         } // isbn es menor de 30 no tiene fecha de entrega.
         prestamoEntity.setFechaPrestamo(UtilCalendar.getLocalDate());
@@ -90,9 +98,6 @@ public class LibroServiceImpl implements LibroService {
     }
 
     private RespuestaDomain<Object> regitrarPrestamo(PrestamoSolicitudDomain prestamoSolicitudDomain, PrestamoEntity prestamoEntity) {
-        prestamoEntity.setFechaPrestamo(UtilCalendar.getLocalDate());
-        LocalDate quienceDiasMax = UtilCalendar.getLocalDate(Calendar.getInstance());
-        prestamoEntity.setFechaEntrega(quienceDiasMax);
         RespuestaDomain responseUsuario = usuarioService.findByCorreo(prestamoSolicitudDomain.getCorreo());
         if (!responseUsuario.isStatus()) {
             UsuarioEntity userEntity = crearUsuario(prestamoSolicitudDomain);
