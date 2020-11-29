@@ -13,11 +13,8 @@ public class PrestamoSolicitudDomain {
     private String isbn;
     private String nombreUsuario;
     private String apellidoUsuario;
-    private String clave;
     private String correo;
-    private String direccion;
-    private String telefono;
-    private String tipoIdentificacion;
-    private String identificacion;
+    private String documento;
+
 
 }

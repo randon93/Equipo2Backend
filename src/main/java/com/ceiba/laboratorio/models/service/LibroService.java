@@ -11,5 +11,5 @@ public interface LibroService {
 
     RespuestaDomain findByIsbn(String isbn);
 
-    RespuestaDomain prestamoLibro();
+    RespuestaDomain prestamoLibro(PrestamoSolicitudDomain prestamoSolicitudDomain);
 }

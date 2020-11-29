@@ -8,7 +8,7 @@ public class UtilsFechaEntrega {
     /**
      *  si tiene mas de 30 retorna verdadero
      */
-    private boolean sumaNumerosPalabra(String palabra){
+    private static boolean sumaNumerosPalabra(String palabra){
         int i= 0;
         int suma=0;
         while(i<palabra.length()) {
@@ -23,7 +23,7 @@ public class UtilsFechaEntrega {
 	 * @param palabra
 	 * @return
 	 */
-    public boolean prestamo(String palabra){
+    public static boolean prestamo(String palabra){
     	int i=1;
     	palabra=palabra.trim();
     	String frase="";
