@@ -36,4 +36,16 @@ public class LibroController {
     public RespuestaDomain buscarIsbn(@RequestBody String isbn) {
         return libroService.findByIsbn(isbn);
     }
+
+	@GetMapping()
+	@ResponseBody
+	public RespuestaDomain findAll() {
+		return libroService.findAll();
+	}
+
+	@GetMapping()
+	@ResponseBody
+	public RespuestaDomain findAllPrestamo() {
+		return libroService.findAllPrestamo();
+	}
 }

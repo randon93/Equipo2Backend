@@ -45,6 +45,15 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
+	public RespuestaDomain findByIdentidad(String identidad) {
+		UsuarioEntity e = usuarioDao.findByIdentificacion(identidad);
+		if (Objects.isNull(e)) {
+			return RespuestaDomain.error("No se encontro el usuario " + identidad);
+		}
+		return RespuestaDomain.ok(e, "Exito");
+	}
+
+	@Override
 	public RespuestaDomain findAll() {
 		List<UsuarioEntity> list = usuarioDao.findAll();
 		if (list.isEmpty()) {
