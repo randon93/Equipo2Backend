@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:    
+    url: jdbc:mysql://localhost:3306/biblioteca_ceiba?useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username : root
+    password: 332817Convenios
+server:
+  port: 8291
