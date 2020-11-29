@@ -1,13 +1,13 @@
 package com.ceiba.laboratorio.models.service;
 
 import com.ceiba.laboratorio.models.domain.LibroDomain;
-import com.ceiba.laboratorio.models.dto.RespuestaDTO;
+import com.ceiba.laboratorio.models.domain.RespuestaDomain;
 
 public interface LibroService {
 
-    RespuestaDTO guardarLibro(LibroDomain libroEntity);
+    RespuestaDomain guardarLibro(LibroDomain libroEntity);
 
-    RespuestaDTO findByIsbn(String isbn);
+    RespuestaDomain findByIsbn(String isbn);
 
-    RespuestaDTO prestamoLibro();
+    RespuestaDomain prestamoLibro();
 }

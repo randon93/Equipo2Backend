@@ -1,4 +1,4 @@
-package com.ceiba.laboratorio.models.dto;
+package com.ceiba.laboratorio.models.domain;
 
 
 import lombok.AllArgsConstructor;
@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RespuestaDTO<T> {
+public class RespuestaDomain<T> {
 	private boolean status;
 	private String mensaje;
 	private T data;
 	
-	public static <T> RespuestaDTO<T> ok(T data, String mensaje, boolean status) {
-		return RespuestaDTO.<T>builder()
+	public static <T> RespuestaDomain<T> ok(T data, String mensaje, boolean status) {
+		return RespuestaDomain.<T>builder()
 				.data(data)
 				.mensaje(mensaje)
 				.status(status)

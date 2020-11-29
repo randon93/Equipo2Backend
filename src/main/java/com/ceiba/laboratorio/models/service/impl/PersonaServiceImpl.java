@@ -1,7 +1,7 @@
 package com.ceiba.laboratorio.models.service.impl;
 
 import com.ceiba.laboratorio.models.domain.PersonasDomain;
-import com.ceiba.laboratorio.models.dto.RespuestaDTO;
+import com.ceiba.laboratorio.models.domain.RespuestaDomain;
 import com.ceiba.laboratorio.models.service.PersonaService;
 import org.springframework.stereotype.Service;
 
@@ -9,17 +9,17 @@ import org.springframework.stereotype.Service;
 public class PersonaServiceImpl implements PersonaService {
 
     @Override
-    public RespuestaDTO guardarPersona(PersonasDomain personaDomain) {
+    public RespuestaDomain guardarPersona(PersonasDomain personaDomain) {
         return null;
     }
 
     @Override
-    public RespuestaDTO findByCorreo(String correo) {
+    public RespuestaDomain findByCorreo(String correo) {
         return null;
     }
 
     @Override
-    public RespuestaDTO findAll() {
+    public RespuestaDomain findAll() {
         return null;
     }
 }
