@@ -1,0 +1,30 @@
+version: '3.1'
+services:
+  biblioteca-backend-ceiba:
+    image: tolbarweb/biblioteca-backend-ceiba
+    container_name: biblioteca-backend-ceiba
+    restart: always
+    build: 
+      context: ./
+    ports:  
+    - "8291:8291"
+    depends_on:
+      - biblioteca-db
+    networks:
+    - network_biblioteca
+
+  biblioteca-db:
+    image: mysql:8.0
+    container_name: biblioteca-db
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:  
+    - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: biblioteca12345
+    networks:
+    - network_biblioteca
+    
+networks:
+  network_biblioteca:
+     external: true
