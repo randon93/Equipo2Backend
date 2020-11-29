@@ -1,5 +1,6 @@
 package com.ceiba.laboratorio.models.entity;
 
+import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.Cache;
@@ -10,43 +11,44 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "usuarios")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Table(name = "usuario")
 public class UsuarioEntity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(name = "correo", length = 100)
-    private String correo;
+	@Column(name = "correo", length = 100, unique = true)
+	private String correo;
 
-    @Column(name = "clave", length = 100)
-    private String clave;
+	@Column(name = "clave", length = 100)
+	private String clave;
 
-    @Column(name = "rol", length = 1)
-    private String rol;
+	@Column(name = "rol", length = 1)
+	private String rol;
 
-    @OneToMany(mappedBy = "usuarioCliente")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<PrestamoEtity> usuarioClientes = new HashSet<>();
+	@ManyToOne
+	@JoinColumn(name = "id_persona")
+	@JsonIgnoreProperties(value = "usuarios", allowSetters = true)
+	private PersonasEntity personasEntity;
 
-    @OneToMany(mappedBy = "usuarioBiblioteca")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<PrestamoEtity> usuarioBibliotecas = new HashSet<>();
+//	@OneToMany(mappedBy = "usuarioCliente")
+//	private Set<PrestamoEntity> usuarioClientes = new HashSet<>();
+//
+//	@OneToMany(mappedBy = "usuarioBiblioteca")
+//	private Set<PrestamoEntity> usuarioBibliotecas = new HashSet<>();
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = "usuarios", allowSetters = true)
-    private PersonasEntity personasEntity;
 }
