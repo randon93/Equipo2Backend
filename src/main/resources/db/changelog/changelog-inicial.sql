@@ -1,7 +1,7 @@
-CREATE DATABASE biblioteca_ceiba;
-USE biblioteca_ceiba;
+-- liquibase formatted sql
 
--- CC -> Cedula extranjeria
+-- changeset Jorge:1
+-- comment: Script inicial biblioteca
 CREATE TABLE persona(
 	id int primary key auto_increment,
     tipo_identificacion varchar(10) not null,
@@ -12,7 +12,6 @@ CREATE TABLE persona(
     telefono varchar(20) not null
 );
 
--- rol --> 'B' Bibliotecario y 'C' Cliente
 CREATE TABLE usuario(
 	id int primary key auto_increment,    
     correo varchar(100) not null unique,
@@ -30,9 +29,6 @@ CREATE TABLE libro(
     cantidad_disponible int not null
 );
 
--- Controlar el mismo usuario solo puede llevarse 1 copia del libro
--- Si la fecha_entregado is null no está entregado
--- Dejar texto por defecto observaciones algun texto
 CREATE TABLE prestamo(
 	id int primary key auto_increment,
     id_usuario_cliente int not null,

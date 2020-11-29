@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:    
+    url: jdbc:mysql://biblioteca-db/biblioteca_ceiba?useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username : root
+    password: biblioteca12345
+server:
+  port: 8291
