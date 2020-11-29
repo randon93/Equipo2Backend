@@ -98,27 +98,33 @@ public class LibroServiceImpl implements LibroService {
 	private RespuestaDomain<Object> regitrarPrestamo(PrestamoSolicitudDomain prestamoSolicitudDomain,
 			PrestamoEntity prestamoEntity) {
 		RespuestaDomain responseUsuario = usuarioService.findByCorreo(prestamoSolicitudDomain.getCorreo());
+
+		UsuarioEntity userEntity = null;
 		if (!responseUsuario.isStatus()) {
-			UsuarioEntity userEntity = crearUsuario(prestamoSolicitudDomain);
+			userEntity = crearUsuario(prestamoSolicitudDomain);
 			if (Objects.isNull(userEntity)) {
 				return RespuestaDomain.error("NO SE PUDO CREAR EL USUARIO");
 			}
-			prestamoEntity.setUsuarioEntityCliente(userEntity);
-			// Se busca el libro
-			RespuestaDomain liroResponseEn = findByIsbn(prestamoSolicitudDomain.getIsbn());
-			if (!liroResponseEn.isStatus()) {
-				return RespuestaDomain.error("El libro no se encuentra registrado");
-			}
-			LibroEntity le = (LibroEntity) liroResponseEn.getData();
-			if (le.getCantidadDisponible() <= 1) {
-				return RespuestaDomain.error("El libro no tiene Stock para el prestamo");
-			}
-			le.setCantidadDisponible(le.getCantidadDisponible() - 1);
-			libroDao.save(le);
-			prestamoEntity.setObservaciones(OSERVACION_DEFAULT);
-			prestamoEntity.setLibroEntity(le);
-			prestaDao.save(prestamoEntity);
+		} else {
+			userEntity = (UsuarioEntity) responseUsuario.getData();
 		}
+
+		prestamoEntity.setUsuarioEntityCliente(userEntity);
+		// Se busca el libro
+		RespuestaDomain liroResponseEn = findByIsbn(prestamoSolicitudDomain.getIsbn());
+		if (!liroResponseEn.isStatus()) {
+			return RespuestaDomain.error("El libro no se encuentra registrado");
+		}
+		LibroEntity le = (LibroEntity) liroResponseEn.getData();
+		if (le.getCantidadDisponible() <= 1) {
+			return RespuestaDomain.error("El libro no tiene Stock para el prestamo");
+		}
+		le.setCantidadDisponible(le.getCantidadDisponible() - 1);
+		libroDao.save(le);
+		prestamoEntity.setObservaciones(OSERVACION_DEFAULT);
+		prestamoEntity.setLibroEntity(le);
+		prestaDao.save(prestamoEntity);
+
 		return RespuestaDomain.ok(prestamoEntity, "Exito");
 	}
 
