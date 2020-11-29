@@ -1,13 +1,16 @@
 package com.ceiba.laboratorio.controller;
 
-import com.ceiba.laboratorio.models.service.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/api/persona")
+import com.ceiba.laboratorio.models.service.PersonaService;
+
+@RestController
+@RequestMapping("/api/persona")
 public class PersonaController {
 
-    @Autowired
-    private PersonaService personaService;
+	@Autowired
+	private PersonaService personaService;
 
 }

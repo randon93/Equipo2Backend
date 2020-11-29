@@ -51,12 +51,11 @@ public class LibroServiceImpl implements LibroService {
             libroEntity.setCantidadTotal(total + 1);
             libroEntity.setCantidadDisponible(disponibles + 1);
         } else {
-
             libroEntity = libroMapper.convertToEntity(libroDomain);
             libroEntity.setCantidadTotal(1);
-            libroEntity.setCantidadDisponible(1);
-            libroDao.save(libroEntity);
+            libroEntity.setCantidadDisponible(1);            
         }
+        libroDao.save(libroEntity);
         return RespuestaDomain.ok(null, "Registro del Libro Exitoso");
     }
 
