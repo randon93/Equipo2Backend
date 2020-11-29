@@ -6,6 +6,6 @@ spring:
   datasource:    
     url: jdbc:mysql://localhost/biblioteca_ceiba?useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username : root
-    password: tolbar12345
+    password: 12345678
 server:
   port: 8291
