@@ -4,6 +4,14 @@ plugins {
 	id 'java'
 }
 
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
 group = 'com.ceiba.laboratorio'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
