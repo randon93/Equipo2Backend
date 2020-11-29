@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,37 +23,34 @@ import lombok.Data;
 @Table(name = "prestamo")
 public class PrestamoEntity implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column(name = "fecha_prestamo")
-	private LocalDate fechaPrestamo;
+    @Column(name = "fecha_prestamo")
+    private LocalDate fechaPrestamo;
 
-	@Column(name = "fecha_entrega")
-	private LocalDate fechaEntrega;
+    @Column(name = "fecha_entrega")
+    private LocalDate fechaEntrega;
 
-	@Column(name = "fecha_entregado")
-	private LocalDate fechaEntregado;
+    @Column(name = "fecha_entregado")
+    private LocalDate fechaEntregado;
 
-	@Lob
-	@Column(name = "observaciones")
-	private String observaciones;
+    @Lob
+    @Column(name = "observaciones")
+    private String observaciones;
 
-	@ManyToOne
-	@JoinColumn(name = "id_usuario_cliente")
-	@JsonIgnoreProperties(value = "usuarioClientes", allowSetters = true)
-	private UsuarioEntity usuarioEntityCliente;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario_cliente")
+    private UsuarioEntity usuarioEntityCliente;
 
-	@ManyToOne
-	@JoinColumn(name = "id_usuario_bibliotecario")
-	@JsonIgnoreProperties(value = "usuarioBibliotecas", allowSetters = true)
-	private UsuarioEntity usuarioEntityBiblioteca;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario_bibliotecario")
+    private UsuarioEntity usuarioEntityBiblioteca;
 
-	@ManyToOne
-	@JoinColumn(name = "id_libro")
-	@JsonIgnoreProperties(value = "prestamos", allowSetters = true)
-	private LibroEntity libroEntity;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_libro")
+    private LibroEntity libroEntity;
 }

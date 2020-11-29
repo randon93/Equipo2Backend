@@ -1,24 +1,18 @@
 package com.ceiba.laboratorio.models.entity;
 
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-
 import lombok.Data;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-
-import lombok.Data;
+import java.io.Serializable;
+import java.util.Set;
 
 @Data
 @Entity
@@ -48,8 +42,8 @@ public class PersonasEntity implements Serializable {
 
 	@Column(name = "telefono", length = 20)
 	private String telefono;
-	
-	@OneToMany(mappedBy = "personasEntity")
-	private Set<UsuarioEntity> usuarioEntities;
+
+//	@OneToMany(mappedBy = "personasEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	private Set<UsuarioEntity> usuarioEntities;
 
 }

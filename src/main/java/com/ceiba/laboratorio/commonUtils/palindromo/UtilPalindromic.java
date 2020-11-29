@@ -12,7 +12,7 @@ public class UtilPalindromic {
 	 * @param palabra
 	 * @return
 	 */
-    public boolean palindromo(String palabra){
+    public static boolean palindromo(String palabra){
         for(int i =0; i< palabra.length(); i++){
             if(palabra.charAt(i)!= palabra.charAt(palabra.length() -i -1)){
               return false;
@@ -26,7 +26,7 @@ public class UtilPalindromic {
      * @param palabra
      * @return
      */
-    public boolean esPalindromo(String palabra){
+    public static boolean esPalindromo(String palabra){
         return palindromo(palabra);
     }
 

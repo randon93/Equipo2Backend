@@ -1,11 +1,29 @@
 package com.ceiba.laboratorio.commonUtils.calendar;
 
 import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 public class UtilCalendar {
+
+    public static Date getDate() {
+        return Calendar.getInstance().getTime();
+    }
+
+    public static LocalDate getLocalDate() {
+        Date input = UtilCalendar.getDate();
+        LocalDate da = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return da;
+    }
+
+    public static LocalDate getLocalDate(Calendar c) {
+        Date input =  c.getTime();
+        LocalDate da = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return da;
+    }
 
     public static String formatearCalendar(Calendar c) {
         DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, Locale.getDefault());

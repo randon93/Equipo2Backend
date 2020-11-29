@@ -1,22 +1,17 @@
 package com.ceiba.laboratorio.models.entity;
 
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import lombok.Data;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import lombok.Data;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -42,7 +37,7 @@ public class LibroEntity implements Serializable {
 	@Column(name = "cantidad_disponible", nullable = false)
 	private Integer cantidadDisponible;
 
-    @OneToMany(mappedBy = "libroEntity")
-    private Set<PrestamoEntity> prestamoEntities;
+//	@OneToMany(mappedBy = "libroEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	private Set<PrestamoEntity> prestamoEntities;
 
 }
