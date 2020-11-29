@@ -37,7 +37,7 @@ public class LibroController {
         return libroService.findByIsbn(isbn);
     }
 
-	@GetMapping()
+	@GetMapping("/findAll")
 	@ResponseBody
 	public RespuestaDomain findAll() {
 		return libroService.findAll();
