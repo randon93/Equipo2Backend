@@ -43,7 +43,7 @@ public class LibroController {
 		return libroService.findAll();
 	}
 
-	@GetMapping()
+	@GetMapping("/all-prestamos")
 	@ResponseBody
 	public RespuestaDomain findAllPrestamo() {
 		return libroService.findAllPrestamo();

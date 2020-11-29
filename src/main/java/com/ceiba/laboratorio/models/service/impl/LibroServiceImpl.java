@@ -1,10 +1,13 @@
 package com.ceiba.laboratorio.models.service.impl;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
+import com.ceiba.laboratorio.converter.PrestamoMapper;
+import com.ceiba.laboratorio.models.domain.PrestamoDomain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,6 +37,9 @@ public class LibroServiceImpl implements LibroService {
 
 	@Autowired
 	private LibroMapper libroMapper;
+
+	@Autowired
+	private PrestamoMapper prestamoMapper;
 
 	@Autowired
 	private UsuarioService usuarioService;
@@ -77,7 +83,11 @@ public class LibroServiceImpl implements LibroService {
 		if (list.isEmpty()) {
 			return RespuestaDomain.error("No se encontraron libros regustrados");
 		}
-		return RespuestaDomain.ok(list, "Exito");
+		List<LibroDomain> listD = new ArrayList<>();
+		for (LibroEntity e: list) {
+			listD.add(libroMapper.convertToDomain(e));
+		}
+		return RespuestaDomain.ok(listD, "Exito");
 	}
 
 	public RespuestaDomain findAllPrestamo() {
@@ -85,7 +95,11 @@ public class LibroServiceImpl implements LibroService {
 		if (list.isEmpty()) {
 			return RespuestaDomain.error("No se encontraron libros regustrados");
 		}
-		return RespuestaDomain.ok(list, "Exito");
+		List<PrestamoDomain> listD = new ArrayList<>();
+		for (PrestamoEntity e: list) {
+			listD.add(prestamoMapper.convertToDomain(e));
+		}
+		return RespuestaDomain.ok(listD, "Exito");
 	}
 	@Override
 	public RespuestaDomain prestamoLibro(PrestamoSolicitudDomain prestamoSolicitudDomain) {

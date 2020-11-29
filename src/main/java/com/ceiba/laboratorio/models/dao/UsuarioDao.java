@@ -9,5 +9,4 @@ public interface UsuarioDao extends JpaRepository<UsuarioEntity, Long> {
 
     UsuarioEntity findByCorreo(String correo);
 
-    UsuarioEntity findByIdentificacion(String id);
 }
