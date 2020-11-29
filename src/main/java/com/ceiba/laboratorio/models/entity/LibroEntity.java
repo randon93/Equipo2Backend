@@ -42,7 +42,7 @@ public class LibroEntity implements Serializable {
 	@Column(name = "cantidad_disponible", nullable = false)
 	private Integer cantidadDisponible;
 
-//	@OneToMany(mappedBy = "libro")
-//	private Set<PrestamoEntity> prestamoEntities = new HashSet<>();
+    @OneToMany(mappedBy = "libroEntity")
+    private Set<PrestamoEntity> prestamoEntities;
 
 }

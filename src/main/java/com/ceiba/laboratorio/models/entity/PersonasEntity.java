@@ -48,8 +48,8 @@ public class PersonasEntity implements Serializable {
 
 	@Column(name = "telefono", length = 20)
 	private String telefono;
-
-//	@OneToMany(mappedBy = "personas")
-//	private Set<UsuarioEntity> usuarioEntities = new HashSet<>();
+	
+	@OneToMany(mappedBy = "personasEntity")
+	private Set<UsuarioEntity> usuarioEntities;
 
 }

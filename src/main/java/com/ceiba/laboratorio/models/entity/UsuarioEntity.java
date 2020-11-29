@@ -1,6 +1,8 @@
 package com.ceiba.laboratorio.models.entity;
 
 import java.io.Serializable;
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.Cache;
@@ -14,6 +16,7 @@ import javax.persistence.Id;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -42,13 +45,12 @@ public class UsuarioEntity implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "id_persona")
-	@JsonIgnoreProperties(value = "usuarios", allowSetters = true)
 	private PersonasEntity personasEntity;
 
-//	@OneToMany(mappedBy = "usuarioCliente")
-//	private Set<PrestamoEntity> usuarioClientes = new HashSet<>();
-//
-//	@OneToMany(mappedBy = "usuarioBiblioteca")
-//	private Set<PrestamoEntity> usuarioBibliotecas = new HashSet<>();
+	@OneToMany(mappedBy = "usuarioEntityCliente")
+	private Set<PrestamoEntity> usuarioClientes;
+
+	@OneToMany(mappedBy = "usuarioEntityBiblioteca")
+	private Set<PrestamoEntity> usuarioBibliotecas;
 
 }
