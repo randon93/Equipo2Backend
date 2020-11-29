@@ -8,17 +8,29 @@ public class UtilsFechaEntrega {
     /**
      *  si tiene mas de 30 retorna verdadero
      */
-    private boolean sumaNumerosPalabra(String isbn){
+    private boolean sumaNumerosPalabra(String palabra){
         int i= 0;
         int suma=0;
-        while(i<isbn.length()) {
-        	suma=+Character.getNumericValue(isbn.charAt(i));
+        while(i<palabra.length()) {
+        	suma=+Character.getNumericValue(palabra.charAt(i));
         	i++;
         }
         return suma>30?true:false;
     }
 
+	/**
+	 * metodo principal para saber en que condiciones se realiza el prestamo
+	 * @param palabra
+	 * @return
+	 */
     public boolean prestamo(String palabra){
-        return sumaNumerosPalabra(palabra.trim());
+    	int i=1;
+    	palabra=palabra.trim();
+    	String frase="";
+    	while(i<palabra.length()-1) {
+    		frase+=palabra.charAt(i);
+    		i++;
+    	}
+        return sumaNumerosPalabra(frase);
     }
 }

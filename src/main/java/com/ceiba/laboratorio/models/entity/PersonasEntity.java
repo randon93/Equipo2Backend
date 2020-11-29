@@ -2,17 +2,14 @@ package com.ceiba.laboratorio.models.entity;
 
 import lombok.Data;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -41,14 +38,10 @@ public class PersonasEntity implements Serializable {
     @Column(name = "direccion", length = 100)
     private String direccion;
 
-    @Column(name = "telefono", length = 20)
-    private String telefono;
+	@Column(name = "telefono", length = 20)
+	private String telefono;
 
-    @OneToMany(
-            mappedBy = "persona",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
-    )
-    private Set<UsuarioEntity> usuarioEntities = new HashSet<>();
+	@OneToMany(mappedBy = "personasEntity")
+	private Set<UsuarioEntity> usuarioEntities;
 
 }

@@ -1,17 +1,33 @@
 package com.ceiba.laboratorio.commonUtils.palindromo;
 
+/**
+ * Clase para saber si el ISBN es palindromo
+ * @author andres
+ *
+ */
 public class UtilPalindromic {
 
-    private boolean palindromo(String palabra){
-      for(int i =0; i< palabra.length(); i++){
-          if(palabra.charAt(i)!= palabra.charAt(palabra.length() -i -1)){
-            return false;
-          }
+	/**
+	 * Logica de detección de palindromos
+	 * @param palabra
+	 * @return
+	 */
+    public boolean palindromo(String palabra){
+        for(int i =0; i< palabra.length(); i++){
+            if(palabra.charAt(i)!= palabra.charAt(palabra.length() -i -1)){
+              return false;
+            }
+        }
+        return true;
       }
-      return true;
+
+    /**
+     * Metodo principal para saber si es palindromo
+     * @param palabra
+     * @return
+     */
+    public boolean esPalindromo(String palabra){
+        return palindromo(palabra);
     }
 
-    public boolean esPalindromo(String palabra){
-        return palindromo(palabra.trim());
-    }
 }
