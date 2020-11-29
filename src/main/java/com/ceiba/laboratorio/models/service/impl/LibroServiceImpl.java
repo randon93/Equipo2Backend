@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.ceiba.laboratorio.commonUtils.calendar.UtilCalendar;
@@ -123,6 +125,10 @@ public class LibroServiceImpl implements LibroService {
 		libroDao.save(le);
 		prestamoEntity.setObservaciones(OSERVACION_DEFAULT);
 		prestamoEntity.setLibroEntity(le);
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		RespuestaDomain userSesion = usuarioService.findByCorreo(authentication.getName());
+		prestamoEntity.setUsuarioEntityBiblioteca((UsuarioEntity) userSesion.getData());
 		prestaDao.save(prestamoEntity);
 
 		return RespuestaDomain.ok(prestamoEntity, "Exito");
@@ -134,9 +140,14 @@ public class LibroServiceImpl implements LibroService {
 		per.setNombre(prestamo.getNombreUsuario());
 		per.setApellido(prestamo.getApellidoUsuario());
 		per.setIdentificacion(prestamo.getDocumento());
+		per.setDireccion("");
+		per.setTelefono("");
+		per.setTipoIdentificacion("CC");
+
 		user.setPersonasDomain(per);
 		user.setCorreo(prestamo.getCorreo());
 		user.setClave(per.getIdentificacion());
+		user.setRol("C");
 		return (UsuarioEntity) usuarioService.guarda(user).getData();
 	}
 }
