@@ -42,3 +42,8 @@ CREATE TABLE prestamo(
     fecha_entregado date,
     observaciones text not null
 );
+
+-- changeset Jorge:2
+-- comment: Agregando usuario bibliotecario por defecto
+INSERT INTO persona VALUES (null,"CC","12145636","Sara","Lopez","Calle 34A","8742536");
+INSERT INTO usuario VALUES (null,"admin@gmail.com","$2a$10$poXHyM9jxDzsGPp/JrLr9OiXACdyWFJ0j61BtTacelGaiBA1r3emG","B",1);-- La clave es admin
