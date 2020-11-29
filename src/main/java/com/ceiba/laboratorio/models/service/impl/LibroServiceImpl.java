@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.ceiba.laboratorio.converter.PrestamoMapper;
+import com.ceiba.laboratorio.converter.UsuarioMapper;
 import com.ceiba.laboratorio.models.domain.PrestamoDomain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -37,6 +38,9 @@ public class LibroServiceImpl implements LibroService {
 
 	@Autowired
 	private LibroMapper libroMapper;
+
+	@Autowired
+	private UsuarioMapper usuarioMapper;
 
 	@Autowired
 	private PrestamoMapper prestamoMapper;
@@ -97,8 +101,16 @@ public class LibroServiceImpl implements LibroService {
 		}
 		List<PrestamoDomain> listD = new ArrayList<>();
 		for (PrestamoEntity e: list) {
-			listD.add(prestamoMapper.convertToDomain(e));
+			PrestamoDomain pd = prestamoMapper.convertToDomain(e);
+			UsuarioDomain ud = usuarioMapper.convertToDomain(e.getUsuarioEntityCliente());
+			pd.setUsuarioDomainCliente(ud);
+			ud = usuarioMapper.convertToDomain(e.getUsuarioEntityBiblioteca());
+			pd.setUsuarioDomainBiblioteca(ud);
+			LibroDomain ld = libroMapper.convertToDomain(e.getLibroEntity());
+			pd.setLibroDomain(ld);
+			listD.add(pd);
 		}
+
 		return RespuestaDomain.ok(listD, "Exito");
 	}
 	@Override
