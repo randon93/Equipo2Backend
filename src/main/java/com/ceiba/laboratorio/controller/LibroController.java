@@ -16,7 +16,7 @@ public class LibroController {
     @Autowired
     private LibroService libroService;
 
-    @PostMapping("/get-prueba")
+    @PostMapping("/guardar-libro")
     @ResponseBody
     private RespuestaDomain guardarLibro(@RequestBody LibroDomain libroDomain) {
         return libroService.guardarLibro(libroDomain);
