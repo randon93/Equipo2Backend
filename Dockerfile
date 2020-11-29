@@ -14,4 +14,5 @@ ENV ARTIFACT_NAME=Equipo2Backend-0.0.1-SNAPSHOT.jar
 ENV APP_HOME=/usr/app/
 WORKDIR $APP_HOME
 COPY --from=TEMP_BUILD_IMAGE $APP_HOME/build/libs/$ARTIFACT_NAME .
+RUN ls -a
 CMD ["java","-jar",$ARTIFACT_NAME]
