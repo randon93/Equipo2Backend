@@ -7,7 +7,7 @@ RUN chmod +x gradlew
 RUN ./gradlew build || return 0 
 COPY . .
 RUN chmod +x gradlew
-RUN ./gradlew build
+RUN ./gradlew build -x test
 
 FROM openjdk:8
 ENV ARTIFACT_NAME=Equipo2Backend-0.0.1-SNAPSHOT.jar
