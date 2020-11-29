@@ -10,6 +10,8 @@ services:
     - "8291:8291"
     depends_on:
       - biblioteca-db
+    networks:
+    - network_biblioteca
 
   biblioteca-db:
     image: mysql:8.0
@@ -20,6 +22,9 @@ services:
     - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: biblioteca12345
+    networks:
+    - network_biblioteca
+    
 networks:
   network_biblioteca:
      external: true
